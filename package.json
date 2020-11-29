@@ -1,0 +1,25 @@
+{
+  "name": "socially",
+  "version": "1.0.0",
+  "description": "social network api",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.6.3",
+    "mongoose": "^5.10.18"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aksmith5239/socially.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aksmith5239/socially/issues"
+  },
+  "homepage": "https://github.com/aksmith5239/socially#readme"
+}
