@@ -34,8 +34,10 @@ UserSchema.virtual('friend' , {
     ref: 'User',
     localField: '_id',
     foreignField: 'friends'
-})
-
+});
+UserSchema.virtual('friendCount').get(function() {
+    return this.friends.length;
+});
 
 const User = model('User', UserSchema);
 
