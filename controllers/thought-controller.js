@@ -26,17 +26,17 @@ const thoughtController = {
         })
     },
     //create the Thought
-    createThought({body}, res ) {
+    createThought({ body }, res ) {
         Thought.create(body)
         .then(dbThoughtData => res.json(dbThoughtData))
         .catch(err => res.status(400).json(err));
     },
     //update the Thought
-    updateThought({params, body}, res) {
-        Thought.findOneAndUpdate({_id: params.id}, body, {new: true})
+    updateThought({ params, body }, res) {
+        Thought.findOneAndUpdate({ _id: params.id }, body, { new: true })
         .then(dbThoughtData => {
             if(!dbThoughtData) {
-                res.status(404).json({message: "We could not find the Thought!"});
+                res.status(404).json({ message: "We could not find the Thought!" });
                 return;
             }
             res.json(dbThoughtData);
@@ -44,11 +44,11 @@ const thoughtController = {
         .catch(err => res.status(400).json(err));
     },
     //delete the Thought
-    deleteThought({params}, res) {
-        Thought.findOneAndDelete({_id: params.id})
+    deleteThought({ params }, res) {
+        Thought.findOneAndDelete({ _id: params.id })
         .then(dbThoughtData => {
             if(!dbThoughtData) {
-                res.status(404).json({message: 'No Thought found with that id'});
+                res.status(404).json({ message: 'No Thought found with that id' });
                 return;
             }
             res.json(dbThoughtData);

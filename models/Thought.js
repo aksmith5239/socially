@@ -4,22 +4,22 @@ const dateFormat = require('../utils/dateFormat');
 const ThoughtSchema = new Schema({
     thoughtText: {
         type: String,
-        required: true
-        // minLength: 1,
-        // maxLength: 280
+        required: true,
+        minLength: 1,
+        maxLength: 280
         
     },
     createdAt: {
         type: Date,
-        default: Date.now,
-        get: (createdAtVal) => dateFormat(createdAtVal)
+        default: Date.now
+        
     },
     username: {
         type: String,
         required: true
     },
     //array of nested documents created with the reaction schema
-     reactions: [],
+     reactions: []
  },
 {
     toJSON: {
