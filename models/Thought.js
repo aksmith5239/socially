@@ -4,8 +4,9 @@ const dateFormat = require('../utils/dateFormat');
 const ThoughtSchema = new Schema({
     thoughtText: {
         type: String,
-        required: true,
-        //must be between 1 and 280 charachters
+        required: true
+        // minLength: 1,
+        // maxLength: 280
         
     },
     createdAt: {
@@ -18,8 +19,8 @@ const ThoughtSchema = new Schema({
         required: true
     },
     //array of nested documents created with the reaction schema
-    reactions: []
-},
+     reactions: [],
+ },
 {
     toJSON: {
         virtuals: true,
