@@ -29,7 +29,12 @@ const UserSchema = new Schema({
     }
 }
 );
-
+//not sure this is correct! REVISIT!!!
+UserSchema.virtual('friend' , {
+    ref: 'User',
+    localField: '_id',
+    foreignField: 'friends'
+})
 
 
 const User = model('User', UserSchema);
