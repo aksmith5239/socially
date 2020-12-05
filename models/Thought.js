@@ -1,32 +1,34 @@
 const { Schema, model, Types} = require('mongoose');
 const moment = require('moment');
 
-// const ReactionSchema = new Schema({
-//     reactionId: {
-//         type: Schema.Types.ObjectId,
-//         default: () => new Types.ObjectId()
-//     },
-//     reactionBody: {
-//         type: String,
-//         required: true,
-//         maxLength: 280
-//     }, 
-//     username: {
-//         type: String,
-//         required: true
-//     },
-//     createdAt: {
-//         type: Date,
-//         default: Date.now,
-//         get: createdAtVal => moment(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
-//       }
-//     },
-//     {
-//         toJSON: {
-//             getters: true
-//         }    
-//     }
-// );
+const ReactionSchema = new Schema({
+    reactionId: {
+        type: Schema.Types.ObjectId,
+        default: () => new Types.ObjectId()
+    },
+    reactionBody: {
+        type: String,
+        required: true,
+        maxLength: 280,
+        trim: true
+    }, 
+    username: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+        get: createdAtVal => moment(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
+      }
+    },
+    {
+        toJSON: {
+            getters: true
+        }    
+    }
+);
 
 const ThoughtSchema = new Schema({
     thoughtText: {
@@ -49,7 +51,7 @@ const ThoughtSchema = new Schema({
         trim: true
     },
     //array of nested documents created with the reaction schema like replies (not own model but own schema)
-     reactions: []
+     reactions: [ReactionSchema]
  },
 {
     toJSON: {

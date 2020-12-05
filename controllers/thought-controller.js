@@ -45,6 +45,22 @@ const thoughtController = {
             .catch(err => res.json(err));
     },
 
+    addReaction({ params, body }, res) {
+        Thought.findOneAndUpdate(
+            { _id: params.thoughtId },
+            { $push: {reactions: body } },
+            { new: true }
+        )
+        .then(dbUserData => {
+            if(!dbUserData) {
+                res.status(404).json({message: "We could not find that user"});
+                return;
+            }
+            res.json(dbUserData);
+        })
+        .catch(err => res.json(err));
+    },
+
     updateThought({ params, body }, res) {
         Thought.findOneAndUpdate({ _id: params.id }, body, { new: true })
         .then(dbThoughtData => {
@@ -70,7 +86,7 @@ const thoughtController = {
         .catch(err => res.status(400).json(err));
     },
 
-    //remove thought through the user is not working
+    //remove thought through the user 
     removeThought({ params }, res) {
         Thought.findOneAndDelete({ _id: params.thoughtId })
           .then(deletedThought => {
@@ -92,6 +108,16 @@ const thoughtController = {
           })
           .catch(err => res.json(err));
      
+    },
+    //remove reaction does not seem to work yet.
+    removeReaction({ params }, res) {
+        Thought.findOneAndUpdate(
+            { _id: params.thoughtId },
+            { $pull: {reactions: { reactionId: params.reactionId} } },
+            { new: true }
+        )
+        .then(dbUserData => res.json(dbUserData))
+        .catch(err => res.json(err));
     }
 
     
