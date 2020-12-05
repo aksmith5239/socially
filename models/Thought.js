@@ -33,7 +33,8 @@ const ThoughtSchema = new Schema({
         type: String,
         required: true,
         minLength: 1,
-        maxLength: 280
+        maxLength: 280,
+        trim: true
         
     },
     createdAt: {
@@ -43,7 +44,8 @@ const ThoughtSchema = new Schema({
     },
     username: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     //array of nested documents created with the reaction schema
      reactions: [ReactionSchema]
