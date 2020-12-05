@@ -25,19 +25,12 @@ const UserSchema = new Schema({
 {
     toJSON: {
         virtuals: true,
-        getters: true
-
-
-        
-    }
+        getters: true   
+    },
+    id: false
 }
 );
-//not sure this is correct! REVISIT!!!
-UserSchema.virtual('friend' , {
-    ref: 'User',
-    localField: '_id',
-    foreignField: 'friends'
-});
+
 UserSchema.virtual('friendCount').get(function() {
     return this.friends.length;
 });
