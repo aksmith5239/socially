@@ -57,7 +57,20 @@ const thoughtController = {
         .catch(err => res.status(400).json(err));
     },
 
-    //remove thought is not working
+    //delete thought by its id
+    deleteThought({params}, res) {
+        Thought.findOneAndDelete({_id: params.id})
+        .then(dbThoughtData => {
+            if(!dbThoughtData) {
+                res.status(404).json({message: 'No thought found with that id'});
+                return;
+            }
+            res.json(dbThoughtData);
+        })
+        .catch(err => res.status(400).json(err));
+    },
+
+    //remove thought through the user is not working
     removeThought({ params }, res) {
         Thought.findOneAndDelete({ _id: params.thoughtId })
           .then(deletedThought => {
@@ -79,7 +92,7 @@ const thoughtController = {
           })
           .catch(err => res.json(err));
      
-    },
+    }
 
     
 }
