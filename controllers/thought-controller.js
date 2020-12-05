@@ -26,13 +26,13 @@ const thoughtController = {
         })
     },
     //create the Thought - Push created thought to users thought array field
-    addThought({ params, body }, res ) {
+    createThought({ params, body }, res ) {
         console.log(body);
         Thought.create(body)
         .then(({ _id }) => {
             return User.findOneAndUpdate(
-                { _id: params.userId},
-                { $push: { thoughts: _id} },
+                { _id: params.userId },
+                { $push: { thought: _id} },
                 { new: true }
             );
         })
@@ -45,7 +45,6 @@ const thoughtController = {
         })
         .catch(err => res.json(err));
     },
-
 
     //update the Thought
     updateThought({ params, body }, res) {
@@ -60,7 +59,7 @@ const thoughtController = {
         .catch(err => res.status(400).json(err));
     },
     //delete the Thought
-    removeThought({ params }, res) {
+    deleteThought({ params }, res) {
         Thought.findOneAndDelete({ _id: params.toughtId })
         .then(deletedThought => {
             if(!deletedThought) {
@@ -68,7 +67,7 @@ const thoughtController = {
             }
             return User.findOneAndUpdate(
                 { _id: params.userId},
-                {$pull: {thoughts: params.thoughtId} },
+                {$pull: {user: params.thoughtId} },
                 { new: true }
             );
         })
