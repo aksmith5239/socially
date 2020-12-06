@@ -23,6 +23,9 @@ Socially Yours requires node js, express and mongoose. Run npm install from the 
 ## Usage
 Socially Yours can be used to create a social media network where users create thoughts, have friends follow and react to their thoughts. All CRUD functionality exists where a user can be created, updated and deleted and all users can be viewed as a group or by id. A friend can be added or removed from the user. User's thoughts can be created, read, updated and deleted. Friends can react to users thoughts by adding a reaction or a reaction can be delted.
 
+Watch video on how to use app: 
+https://drive.google.com/file/d/1Lz3HQX9trSLDv_SoGDyfV6D_LYr6Skry/view
+
 ## Contributing
 
 
