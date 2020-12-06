@@ -5,7 +5,7 @@ const userController = {
     getAllUser(req, res) {
         User.find({})
         .populate({
-            path: 'thought',
+            path: 'thoughts',
             select: '-__v'
         })
         .select('-__v')
@@ -18,6 +18,11 @@ const userController = {
     //get one user by id
     getUserById({params}, res) {
         User.findOne({_id: params.id})
+        .populate({
+            path: 'thoughts',
+            select: '-__v'
+        })
+        .select('-__v')
         .then(dbUserData => {
             if(!dbUserData) {
                 res.status(404).json({message: "We could not find that user!"});
